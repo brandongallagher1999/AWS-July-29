@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
-  namespace: nezz-takehome
+  namespace: takehome
   annotations:
     kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: "internet-facing"
@@ -13,8 +13,8 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: "/health"
     alb.ingress.kubernetes.io/healthcheck-port: "3000"
     alb.ingress.kubernetes.io/success-codes: "200"
-    alb.ingress.kubernetes.io/group.name: "nezz-takehome"
-    alb.ingress.kubernetes.io/tags: "Environment=dev,Project=nezz-takehome-test"
+    alb.ingress.kubernetes.io/group.name: "takehome"
+    alb.ingress.kubernetes.io/tags: "Environment=dev,Project=takehome-test"
 spec:
   rules:
   - host: ${DOMAIN_NAME}

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-config
-  namespace: nezz-takehome
+  namespace: takehome
 data:
   prometheus.yml: |
     global:
@@ -78,7 +78,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus
-  namespace: nezz-takehome
+  namespace: takehome
 spec:
   replicas: 1
   selector:
@@ -126,7 +126,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: prometheus
-  namespace: nezz-takehome
+  namespace: takehome
 spec:
   selector:
     app: prometheus

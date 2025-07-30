@@ -53,8 +53,8 @@ This project demonstrates a complete DevOps workflow with:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/nezz-takehome-test.git
-   cd nezz-takehome-test
+   git clone https://github.com/your-username/takehome-test.git
+   cd takehome-test
    ```
 
 2. **Configure AWS credentials**
@@ -73,7 +73,7 @@ This project demonstrates a complete DevOps workflow with:
 
 4. **Configure kubectl for EKS**
    ```bash
-   aws eks update-kubeconfig --region us-west-2 --name nezz-takehome-cluster
+   aws eks update-kubeconfig --region us-west-2 --name takehome-cluster
    ```
 
 5. **Deploy the application**

@@ -31,8 +31,8 @@ The IAM user needs the following permissions:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/nezz-takehome-test.git
-cd nezz-takehome-test
+git clone https://github.com/your-username/takehome-test.git
+cd takehome-test
 ```
 
 ### Step 2: Configure AWS Credentials
@@ -49,11 +49,11 @@ aws configure
 
 ```bash
 # Create S3 bucket for Terraform state
-aws s3 mb s3://nezz-takehome-terraform-state --region us-west-2
+aws s3 mb s3://takehome-terraform-state --region us-west-2
 
 # Enable versioning
 aws s3api put-bucket-versioning \
-    --bucket nezz-takehome-terraform-state \
+    --bucket takehome-terraform-state \
     --versioning-configuration Status=Enabled
 ```
 
@@ -146,23 +146,23 @@ kubectl apply -f k8s/
 
 ```bash
 # Check pod status
-kubectl get pods -n nezz-takehome
+kubectl get pods -n takehome
 
 # Check services
-kubectl get svc -n nezz-takehome
+kubectl get svc -n takehome
 
 # Check ingress
-kubectl get ingress -n nezz-takehome
+kubectl get ingress -n takehome
 
 # Wait for ALB to be provisioned
-kubectl wait --for=condition=ready ingress/app-ingress -n nezz-takehome --timeout=300s
+kubectl wait --for=condition=ready ingress/app-ingress -n takehome --timeout=300s
 ```
 
 ### Step 10: Access the Application
 
 ```bash
 # Get the ALB URL
-ALB_URL=$(kubectl get ingress app-ingress -n nezz-takehome -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+ALB_URL=$(kubectl get ingress app-ingress -n takehome -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
 
 echo "Application URL: http://$ALB_URL"
 echo "Health Check: http://$ALB_URL/health"
@@ -175,10 +175,10 @@ echo "Metrics: http://$ALB_URL/metrics"
 
 ```bash
 # Port forward to access Grafana
-kubectl port-forward svc/grafana 3001:3000 -n nezz-takehome
+kubectl port-forward svc/grafana 3001:3000 -n takehome
 
 # Port forward to access Prometheus
-kubectl port-forward svc/prometheus 9090:9090 -n nezz-takehome
+kubectl port-forward svc/prometheus 9090:9090 -n takehome
 ```
 
 **Access URLs:**
@@ -217,11 +217,11 @@ curl http://$ALB_URL/metrics
 
 ```bash
 # Scale up the deployment
-kubectl scale deployment app-deployment --replicas=5 -n nezz-takehome
+kubectl scale deployment app-deployment --replicas=5 -n takehome
 
 # Monitor scaling
-kubectl get hpa -n nezz-takehome
-kubectl describe hpa app-hpa -n nezz-takehome
+kubectl get hpa -n takehome
+kubectl describe hpa app-hpa -n takehome
 ```
 
 ## Troubleshooting
@@ -241,10 +241,10 @@ kubectl describe nodes
 #### 2. Pods Not Starting
 ```bash
 # Check pod events
-kubectl describe pod -l app=nezz-takehome-app -n nezz-takehome
+kubectl describe pod -l app=takehome-app -n takehome
 
 # Check pod logs
-kubectl logs -l app=nezz-takehome-app -n nezz-takehome
+kubectl logs -l app=takehome-app -n takehome
 ```
 
 #### 3. ALB Not Provisioned
@@ -253,33 +253,33 @@ kubectl logs -l app=nezz-takehome-app -n nezz-takehome
 kubectl logs -n kube-system deployment/aws-load-balancer-controller
 
 # Check ingress events
-kubectl describe ingress app-ingress -n nezz-takehome
+kubectl describe ingress app-ingress -n takehome
 ```
 
 #### 4. Image Pull Errors
 ```bash
 # Check ECR repository
-aws ecr describe-repositories --repository-names nezz-takehome-test-app
+aws ecr describe-repositories --repository-names takehome-test-app
 
 # Verify image exists
-aws ecr describe-images --repository-name nezz-takehome-test-app
+aws ecr describe-images --repository-name takehome-test-app
 ```
 
 ### Debug Commands
 
 ```bash
 # Get all resources in namespace
-kubectl get all -n nezz-takehome
+kubectl get all -n takehome
 
 # Check events
-kubectl get events -n nezz-takehome --sort-by='.lastTimestamp'
+kubectl get events -n takehome --sort-by='.lastTimestamp'
 
 # Check resource usage
-kubectl top pods -n nezz-takehome
+kubectl top pods -n takehome
 kubectl top nodes
 
 # Check service endpoints
-kubectl get endpoints -n nezz-takehome
+kubectl get endpoints -n takehome
 ```
 
 ## Cleanup
@@ -298,7 +298,7 @@ cd terraform
 terraform destroy -auto-approve
 
 # Delete S3 bucket (if empty)
-aws s3 rb s3://nezz-takehome-terraform-state --force
+aws s3 rb s3://takehome-terraform-state --force
 ```
 
 ## Cost Estimation

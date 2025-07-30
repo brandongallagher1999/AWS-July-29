@@ -8,8 +8,8 @@ on:
 
 env:
   AWS_REGION: us-west-2
-  ECR_REPOSITORY: nezz-takehome-test-app
-  EKS_CLUSTER_NAME: nezz-takehome-cluster
+  ECR_REPOSITORY: takehome-test-app
+  EKS_CLUSTER_NAME: takehome-cluster
 
 jobs:
   test:
@@ -117,15 +117,15 @@ jobs:
         
     - name: Wait for deployment
       run: |
-        kubectl rollout status deployment/app-deployment -n nezz-takehome --timeout=300s
+        kubectl rollout status deployment/app-deployment -n takehome --timeout=300s
         
     - name: Run smoke tests
       run: |
         # Wait for service to be ready
-        kubectl wait --for=condition=ready pod -l app=nezz-takehome-app -n nezz-takehome --timeout=300s
+        kubectl wait --for=condition=ready pod -l app=takehome-app -n takehome --timeout=300s
         
         # Get service URL
-        SERVICE_URL=$(kubectl get ingress app-ingress -n nezz-takehome -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+        SERVICE_URL=$(kubectl get ingress app-ingress -n takehome -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
         
         # Run health check
         curl -f http://$SERVICE_URL/health || exit 1

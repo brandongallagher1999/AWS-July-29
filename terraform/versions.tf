@@ -16,7 +16,7 @@ terraform {
   }
   
   backend "s3" {
-    bucket = "nezz-takehome-terraform-state"
+    bucket = "takehome-terraform-state"
     key    = "terraform.tfstate"
     region = "us-west-2"
   }

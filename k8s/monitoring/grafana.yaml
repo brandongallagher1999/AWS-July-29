@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-datasources
-  namespace: nezz-takehome
+  namespace: takehome
 data:
   prometheus.yaml: |
     apiVersion: 1
@@ -18,14 +18,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboards
-  namespace: nezz-takehome
+  namespace: takehome
 data:
   app-dashboard.json: |
     {
       "dashboard": {
         "id": null,
         "title": "Application Dashboard",
-        "tags": ["nezz-takehome"],
+        "tags": ["takehome"],
         "timezone": "browser",
         "panels": [
           {
@@ -70,7 +70,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana
-  namespace: nezz-takehome
+  namespace: takehome
 spec:
   replicas: 1
   selector:
@@ -120,7 +120,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: grafana
-  namespace: nezz-takehome
+  namespace: takehome
 spec:
   selector:
     app: grafana

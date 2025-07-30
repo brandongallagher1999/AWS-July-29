@@ -108,7 +108,7 @@ app.get('/api/status', (req, res) => {
 
 app.get('/api/info', (req, res) => {
   res.json({
-    name: 'Nezz Take-Home Test App',
+    name: 'Take-Home Test App',
     version: process.env.APP_VERSION || '1.0.0',
     description: 'A simple Node.js application demonstrating DevOps practices',
     features: [

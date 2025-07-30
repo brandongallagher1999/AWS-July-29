@@ -2,9 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app-service
-  namespace: nezz-takehome
+  namespace: takehome
   labels:
-    app: nezz-takehome-app
+    app: takehome-app
 spec:
   type: ClusterIP
   ports:
@@ -13,4 +13,4 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: nezz-takehome-app 
+    app: takehome-app 

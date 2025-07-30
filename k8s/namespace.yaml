@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nezz-takehome
+  name: takehome
   labels:
-    name: nezz-takehome
+    name: takehome
     environment: dev 

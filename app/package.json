@@ -1,5 +1,5 @@
 {
-  "name": "nezz-takehome-app",
+  "name": "takehome-app",
   "version": "1.0.0",
   "description": "Simple Node.js application for DevOps take-home test",
   "main": "server.js",

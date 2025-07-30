@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-deployment
-  namespace: nezz-takehome
+  namespace: takehome
   labels:
-    app: nezz-takehome-app
+    app: takehome-app
     version: v1
 spec:
   replicas: 3
@@ -15,11 +15,11 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: nezz-takehome-app
+      app: takehome-app
   template:
     metadata:
       labels:
-        app: nezz-takehome-app
+        app: takehome-app
         version: v1
       annotations:
         prometheus.io/scrape: "true"

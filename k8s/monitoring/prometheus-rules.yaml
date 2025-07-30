@@ -2,11 +2,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-rules
-  namespace: nezz-takehome
+  namespace: takehome
 data:
   alert_rules.yml: |
     groups:
-    - name: nezz-takehome
+    - name: takehome
       rules:
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80

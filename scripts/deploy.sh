@@ -9,7 +9,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_NAME="nezz-takehome-test"
+PROJECT_NAME="takehome-test"
 AWS_REGION="us-west-2"
 EKS_CLUSTER_NAME="${PROJECT_NAME}-cluster"
 ECR_REPOSITORY="${PROJECT_NAME}-app"
@@ -88,16 +88,16 @@ kubectl apply -f k8s/
 
 # Wait for deployment to be ready
 echo -e "${YELLOW}⏳ Waiting for deployment to be ready...${NC}"
-kubectl rollout status deployment/app-deployment -n nezz-takehome --timeout=300s
+kubectl rollout status deployment/app-deployment -n takehome --timeout=300s
 
 # Get service URL
 echo -e "${YELLOW}🌐 Getting service URL...${NC}"
-SERVICE_URL=$(kubectl get ingress app-ingress -n nezz-takehome -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' 2>/dev/null || echo "pending")
+SERVICE_URL=$(kubectl get ingress app-ingress -n takehome -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' 2>/dev/null || echo "pending")
 
 if [ "$SERVICE_URL" = "pending" ]; then
     echo -e "${YELLOW}⏳ Waiting for ALB to be provisioned...${NC}"
     sleep 60
-    SERVICE_URL=$(kubectl get ingress app-ingress -n nezz-takehome -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+    SERVICE_URL=$(kubectl get ingress app-ingress -n takehome -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
 fi
 
 # Run health check
@@ -125,8 +125,8 @@ echo -e "  Service URL: $SERVICE_URL"
 
 # Display useful commands
 echo -e "${YELLOW}🔧 Useful Commands:${NC}"
-echo -e "  View pods: kubectl get pods -n nezz-takehome"
-echo -e "  View logs: kubectl logs -f deployment/app-deployment -n nezz-takehome"
-echo -e "  View services: kubectl get svc -n nezz-takehome"
-echo -e "  View ingress: kubectl get ingress -n nezz-takehome"
-echo -e "  Scale deployment: kubectl scale deployment app-deployment --replicas=5 -n nezz-takehome" 
+echo -e "  View pods: kubectl get pods -n takehome"
+echo -e "  View logs: kubectl logs -f deployment/app-deployment -n takehome"
+echo -e "  View services: kubectl get svc -n takehome"
+echo -e "  View ingress: kubectl get ingress -n takehome"
+echo -e "  Scale deployment: kubectl scale deployment app-deployment --replicas=5 -n takehome" 

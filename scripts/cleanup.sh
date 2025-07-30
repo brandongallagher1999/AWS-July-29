@@ -9,7 +9,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_NAME="nezz-takehome-test"
+PROJECT_NAME="takehome-test"
 AWS_REGION="us-west-2"
 EKS_CLUSTER_NAME="${PROJECT_NAME}-cluster"
 

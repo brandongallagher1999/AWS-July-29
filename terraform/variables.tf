@@ -13,7 +13,7 @@ variable "environment" {
 variable "project_name" {
   description = "Project name"
   type        = string
-  default     = "nezz-takehome-test"
+  default     = "takehome-test"
 }
 
 variable "vpc_cidr" {
